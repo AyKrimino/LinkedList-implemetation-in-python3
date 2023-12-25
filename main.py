@@ -42,7 +42,7 @@ class LinkedList:
                 break
 
 
-if __main__ == '__name__':
+if __name__ == '__main__':
     n1 = Node('ayoub')
     n2 = Node('sami')
     n3 = Node('hamadi')
