@@ -11,16 +11,10 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
+        self.length = 0
     
     def __len__(self):
-        current_node = self.head
-        length = 0
-        while True:
-            if current_node is None:
-                return length
-            length += 1
-            current_node = current_node.next
-        return length
+        return self.length
 
     def empty(self):
         return self.head is None
@@ -39,6 +33,8 @@ class LinkedList:
                 current_node = current_node.next
             current_node.next = node
             
+        self.length += 1
+         
     def append_left(self, node):
         """
         
@@ -47,6 +43,8 @@ class LinkedList:
         """
         node.next = self.head
         self.head = node
+    
+        self.length += 1
     
     def append_at(self, node, index):
         """
@@ -75,6 +73,8 @@ class LinkedList:
                 current_node = current_node.next
                 current_index += 1
 
+            self.length += 1 
+
     def print_linked_list(self):
         if self.empty():  # Edge case : if the LinkedList is empty we cannot proceed
             print('Underflow occurred! LinkedList is empty.')
@@ -102,7 +102,7 @@ if __name__ == '__main__':
     linked_list1.append(node3)
     linked_list1.append(node4)
     linked_list1.append_left(node5)
-    linked_list1.append_at(node4, len(linked_list1) - 1)
+    # linked_list1.append_at(node4, len(linked_list1) - 1)
     linked_list1.print_linked_list()  # lists all the elements of the linked_list1
     print(len(linked_list1))  # prints the length of the linked_list2 using the dunder method __len__ defined in the class
 
