@@ -90,7 +90,7 @@ class LinkedList:
             append node at specific index
         Args:
             node (Node): instance of the Node class implemented above
-            idx (int): represents the index where the node should be inserted 
+            index (int): represents the index where the node should be inserted 
                         and it shouldn't be out of range of the linked list instance
         Note:
             LinkedList is 0-BASED indexed
@@ -114,22 +114,94 @@ class LinkedList:
                 current_index += 1
 
             self.length += 1 
-
-    def print_linked_list(self):
-        
+            
+    def pop_left(self):
         '''
         
         Role:
-            lists all the LinkedList elements
+            Removes the head node depending on which case it gonna do some logic
+            if the LinkedList is empty it returns None
+            if the LinkedList have one node it removes this node and returns its value
+            otherwise if the LinkedList have more than one node it removes the head node 
+            and it makes next node as the head node and then it return the value of the 
+            head node removed 
+        '''
+        if self.empty():
+            return None
+        
+        val = self.head.value
+        if len(self) == 1:
+            self.head = None
+        else:
+            self.head = self.head.next
+        self.length -= 1
+        return val 
+            
+    def pop(self):
+        '''
+        
+        Role:
+            Removes the last node of the LinkedList if it exists(LinkedList not empty) 
+            and returns its value
+            if the LinkedList is empty it returns None 
+        '''
+        if self.empty():
+            return None
+        
+        if len(self) == 1:
+            return self.pop_left()
+        else:
+            self.length -= 1
+            current_node = self.head
+            while True:
+                if current_node.next is None:
+                    previous_node.next = None
+                    return current_node.value
+                previous_node = current_node
+                current_node = current_node.next   
+                
+    def pop_at(self, index):
+        '''
+        Role:
+            removes the node at a specific index from the LinkedList
+        Args:
+            index (int): represents the index where the node should be removed 
+                        and it shouldn't be out of range of the linked list instance
+        Note:
+            LinkedList is 0-BASED indexed
+        '''
+        if not (0 <= index <= len(self) - 1):
+            raise IndexError('Linked list index out of range')
+        
+        if index == 0:        
+            return self.pop_left()
+        elif index == len(self) - 1:
+            return self.pop()
+        else:
+            current_index = 0
+            current_node = self.head
+            self.length -= 1
+            while True:
+                if current_index == index:
+                    previous_node.next = current_node.next
+                    return current_node.value
+                current_index += 1
+                previous_node = current_node
+                current_node = current_node.next
+
+    def print_linked_list(self):
+        '''
+        
+        Role:
+            lists all the LinkedList nodes and if the LinkedList is empty it shows that
         '''        
         if self.empty():  # Edge case : if the LinkedList is empty we cannot proceed
             print('Underflow occurred! LinkedList is empty.')
+            return
 
         current_node = self.head
-        i = 0
 
         while True:  # we guarantee that infinite loop gonna stop when we reach the last element of our LinkedList
-            i += 1
             if current_node.next is None: # if we reach the last element we would print it and then break the infinite loop
                 print(current_node.value)
                 break
@@ -153,6 +225,8 @@ if __name__ == '__main__':
     linked_list1.append_left(node5)
     linked_list1.append_at(node6, 3)
     linked_list1.print_linked_list()  # lists all the elements of the linked_list1
+    linked_list1.pop_left()
+    linked_list1.print_linked_list()  # lists all the elements of the linked_list1
     print(len(linked_list1))  # prints the length of the linked_list2 using the dunder method __len__ defined in the class
 
     linked_list2 = LinkedList()
@@ -161,4 +235,5 @@ if __name__ == '__main__':
         linked_list2.append(node)
 
     linked_list2.print_linked_list()  # lists all the elements of the linked_list2
-    print(len(linked_list2))  # prints the length of the linked_list2 using the dunder method __len__ defined in the class
+    print(linked_list2.pop_at(3))
+    linked_list2.print_linked_list()  # lists all the elements of the linked_list2
