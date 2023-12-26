@@ -4,6 +4,11 @@ class Node:
         Node class represent the element of the linked list
     '''
     def __init__(self, value=None):
+        '''
+        
+        Role:
+            Constructor: Initialize the instance with the value by value and the next by None
+        '''
         self.value = value
         self.next = None
 
@@ -11,6 +16,7 @@ class Node:
 class LinkedList:
     '''
     
+    LinkedList class represents the data structure that gonna store nodes
     Note:
         You cannot have the same node appended twice to the LinkedList
         but you can instead append different nodes that have the same value
@@ -21,20 +27,38 @@ class LinkedList:
     '''
         
     def __init__(self):
+        
+        '''
+        
+        Role:
+            Constructor: initialize the instance with the head by None and length by 0
+        '''
         self.head = None
         self.length = 0
     
     def __len__(self):
+        
+        '''
+        
+        Role:
+            print the length of the LinkedList
+        '''
         return self.length
 
     def empty(self):
+        '''
+        
+        Role:
+            Check whether the LinkedList is empty or not
+        '''
         return self.head is None
 
     def append(self, node):
         '''
-
-            append the node at the end of the linked list
-            node: type Node: instance of Node class
+            Role:
+                append the node at the end of the linked list
+            Args:
+                node (Node): instance of the Node class implemented above
         '''
         if self.empty():  # Edge case : when the append method is called to append the head node
             self.head = node
@@ -48,6 +72,8 @@ class LinkedList:
          
     def append_left(self, node):
         '''
+        
+        Role
             append the node at the start of the linked list
         Args:
             node (Node): instance of the Node class implemented above
@@ -60,6 +86,8 @@ class LinkedList:
     def append_at(self, node, index):
         '''
 
+        Role:
+            append node at specific index
         Args:
             node (Node): instance of the Node class implemented above
             idx (int): represents the index where the node should be inserted 
@@ -88,6 +116,12 @@ class LinkedList:
             self.length += 1 
 
     def print_linked_list(self):
+        
+        '''
+        
+        Role:
+            lists all the LinkedList elements
+        '''        
         if self.empty():  # Edge case : if the LinkedList is empty we cannot proceed
             print('Underflow occurred! LinkedList is empty.')
 
