@@ -162,6 +162,7 @@ class LinkedList:
                 
     def pop_at(self, index):
         '''
+        
         Role:
             removes the node at a specific index from the LinkedList
         Args:
@@ -188,6 +189,30 @@ class LinkedList:
                 current_index += 1
                 previous_node = current_node
                 current_node = current_node.next
+                
+    def find(self, value):
+        '''
+        
+        Role:
+            Checks if the given value of a node exist in the LinkedList instance
+            if so it returns the index of the first occurence of that value
+            (remember values of nodes can be duplicate in the same LinkedList instance
+            but duplicate nodes cannot be appended to the same LinkedList instance)
+            else it returns -1 to help the user understand that node doesn't exist
+        Args:
+            value (any): represents the value of the desired node
+        Note:
+            LinkedList is 0-BASED indexed
+        '''
+        current_node = self.head
+        current_index = 0
+        while current_node is not None:
+            if value == current_node.value:
+                return current_index
+            current_node = current_node.next
+            current_index += 1
+        return -1
+                
 
     def print_linked_list(self):
         '''
@@ -209,8 +234,7 @@ class LinkedList:
             current_node = current_node.next
 
 
-if __name__ == '__main__':
-    
+def main() -> None:
     node1 = Node('ayoub')
     node2 = Node('sami')
     node3 = Node('hamadi')
@@ -227,6 +251,8 @@ if __name__ == '__main__':
     linked_list1.print_linked_list()  # lists all the elements of the linked_list1
     linked_list1.pop_left()
     linked_list1.print_linked_list()  # lists all the elements of the linked_list1
+    print(linked_list1.find('fedi'))
+    print(linked_list1.find('fsdjjflks'))
     print(len(linked_list1))  # prints the length of the linked_list2 using the dunder method __len__ defined in the class
 
     linked_list2 = LinkedList()
@@ -237,3 +263,7 @@ if __name__ == '__main__':
     linked_list2.print_linked_list()  # lists all the elements of the linked_list2
     print(linked_list2.pop_at(3))
     linked_list2.print_linked_list()  # lists all the elements of the linked_list2
+
+
+if __name__ == '__main__':
+    main()
