@@ -1,9 +1,15 @@
+from typing import Any, Optional, TypeVar
+
+
+NodeObject = TypeVar('NodeObject')
+
+
 class Node:
     '''
     
         Node class represent the element of the linked list
     '''
-    def __init__(self, value=None):
+    def __init__(self, value: Optional[Any]=None):
         '''
         
         Role:
@@ -34,9 +40,9 @@ class LinkedList:
             Constructor: initialize the instance with the head by None and length by 0
         '''
         self.head = None
-        self.length = 0
+        self.length: int = 0
     
-    def __len__(self):
+    def __len__(self) -> int:
         
         '''
         
@@ -45,7 +51,7 @@ class LinkedList:
         '''
         return self.length
 
-    def empty(self):
+    def empty(self) -> bool:
         '''
         
         Role:
@@ -53,7 +59,7 @@ class LinkedList:
         '''
         return self.head is None
 
-    def append(self, node):
+    def append(self, node: NodeObject) -> None:
         '''
             Role:
                 append the node at the end of the linked list
@@ -70,7 +76,7 @@ class LinkedList:
             
         self.length += 1
          
-    def append_left(self, node):
+    def append_left(self, node: NodeObject) -> None:
         '''
         
         Role
@@ -83,7 +89,7 @@ class LinkedList:
     
         self.length += 1
     
-    def append_at(self, node, index):
+    def append_at(self, node: NodeObject, index: int) -> None:
         '''
 
         Role:
@@ -115,7 +121,7 @@ class LinkedList:
 
             self.length += 1 
             
-    def pop_left(self):
+    def pop_left(self) -> Any:
         '''
         
         Role:
@@ -137,7 +143,7 @@ class LinkedList:
         self.length -= 1
         return val 
             
-    def pop(self):
+    def pop(self) -> Any:
         '''
         
         Role:
@@ -160,7 +166,7 @@ class LinkedList:
                 previous_node = current_node
                 current_node = current_node.next   
                 
-    def pop_at(self, index):
+    def pop_at(self, index: int) -> Any:
         '''
         
         Role:
@@ -190,7 +196,7 @@ class LinkedList:
                 previous_node = current_node
                 current_node = current_node.next
                 
-    def find(self, value):
+    def find(self, value: Any) -> int:
         '''
         
         Role:
@@ -214,7 +220,7 @@ class LinkedList:
         return -1
                 
 
-    def print_linked_list(self):
+    def print_linked_list(self) -> None:
         '''
         
         Role:
