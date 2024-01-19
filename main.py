@@ -1,7 +1,4 @@
-from typing import Any, Optional, TypeVar
-
-
-NodeObject = TypeVar('NodeObject')
+from typing import Any, Optional
 
 
 class Node:
@@ -9,7 +6,7 @@ class Node:
     
         Node class represent the element of the linked list
     '''
-    def __init__(self, value: Optional[Any]=None):
+    def __init__(self, value: Optional[Any]=None) -> None:
         '''
         
         Role:
@@ -31,8 +28,7 @@ class LinkedList:
         if we have the same node appended twice we gonna have an infinite loop 
         when we iterate over the LinkedList
     '''
-        
-    def __init__(self):
+    def __init__(self) -> None:
         
         '''
         
@@ -59,7 +55,7 @@ class LinkedList:
         '''
         return self.head is None
 
-    def append(self, node: NodeObject) -> None:
+    def append(self, node: Node) -> None:
         '''
             Role:
                 append the node at the end of the linked list
@@ -76,7 +72,7 @@ class LinkedList:
             
         self.length += 1
          
-    def append_left(self, node: NodeObject) -> None:
+    def append_left(self, node: Node) -> None:
         '''
         
         Role
@@ -89,7 +85,7 @@ class LinkedList:
     
         self.length += 1
     
-    def append_at(self, node: NodeObject, index: int) -> None:
+    def append_at(self, node: Node, index: int) -> None:
         '''
 
         Role:
